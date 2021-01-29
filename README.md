@@ -109,8 +109,8 @@ incluindo a descrição de como compilar e executar o programa, além das instru
 ### Como compilar e executar o programa
 
 - Importe o projeto a partir do repositório do Git;
-- Acesse a raiz do projeto (onde está localizado o arquivo pom.xml);
-- Execute o comando "mvn spring-boot:run".
+- Acesse o diretório "controle" (onde está localizado o pom.xml) a partir da raiz do projeto;
+- Execute o comando "mvn spring-boot:run" a partir da linha de comando.
    
 
 ### Tecnologias utilizadas
