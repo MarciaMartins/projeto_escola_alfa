@@ -44,7 +44,7 @@ Existem três serviços principais do projeto:
      - Enviar um Post através do recurso http://localhost:8080/gabaritos
      - Regra campo envio: 
           1. nome - enviar descrição de identificação;
-	  2. respostas: lista composta de resposta e peso da questão.
+          2. respostas: lista composta de resposta e peso da questão.
        
      Exemplo de criação de um gabarito:
      {
@@ -65,8 +65,8 @@ Existem três serviços principais do projeto:
      - Enviar um Post através do recurso http://localhost:8080/provaAluno
      - Regra campo envio: 
           1. aluno: id do aluno;
-	  2. prova: id da prova;
-	  3. prova: lista composta de resposta para prova;
+          2. prova: id da prova;
+          3. prova: lista composta de resposta para prova;
 	  
 	  Exemplo de criação de um gabarito:
 	  {
