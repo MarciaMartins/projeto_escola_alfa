@@ -25,8 +25,8 @@ Existem três serviços principais do projeto:
   - Através da consulta alunos/aprovados, será possível listar os alunos aprovados, com média maior que sete;
 
 3. Resposta do aluno para as provas previamente cadastradas
-   - Permite cadastrar as respostas para um gabarito e aluno previamente registrados;
-   - Somente será possível cadastrar um conjunto de respostas para cada prova, obedecendo a quantidade de gabaritos registrados.
+  - Permite cadastrar as respostas para um gabarito e aluno previamente registrados;
+  - Somente será possível cadastrar um conjunto de respostas para cada prova, obedecendo a quantidade de gabaritos registrados.
 
 ### Recursos importantes para a execução do projeto
 
