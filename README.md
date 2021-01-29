@@ -78,7 +78,7 @@ Existem três serviços principais do projeto:
      	},
      	"respostasAluno": [
      	{
-     		"resposta": "C"
+     		"resposta": "A"
      	},
      	{
      		"resposta": "C"
