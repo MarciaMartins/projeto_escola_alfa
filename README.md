@@ -43,7 +43,7 @@ Existem três serviços principais do projeto:
   ## Cadastrar o gabarito de cada prova 
      - Enviar um Post através do recurso http://localhost:8080/gabaritos
      - Regra campo envio: 
-          1. dome - enviar descrição de identificação;
+          1. nome - enviar descrição de identificação;
 	  2. respostas: lista composta de resposta e peso da questão.
        
      Exemplo de criação de um gabarito:
