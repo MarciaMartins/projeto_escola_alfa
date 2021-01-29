@@ -1,0 +1,2 @@
+INDEX VERSION 1.131+C:\Users\marci\Documents\Arquivos Pessoais\AA_PROGRAMACAO\AlfaEscola\.metadata\.plugins\org.eclipse.jdt.core
+427049163.index
