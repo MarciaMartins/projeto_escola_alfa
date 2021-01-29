@@ -94,20 +94,32 @@ Existem três serviços principais do projeto:
   ## Listar os alunos aprovados 
      - Enviar um Get através do recurso http://localhost:8080/alunos/aprovados 
      
+  ## Curls de exemplo
+     - curl --header "Content-Type: application/json" --request POST --data '{"nome": "Nome de identificacao do aluno"}' http://localhost:8080/alunos
+
+     - curl --header "Content-Type: application/json" --request POST --data '{"descricao": "Descricao de identificacao do gabarito","respostas": [{"resposta": "A","pesoQuestao": 2},{"resposta": "C","pesoQuestao": 5}]}' http://localhost:8080/gabaritos
+
+     - curl --header "Content-Type: application/json" --request POST --data '{"aluno": {"id": 1},"prova": {"id": 1},"respostasAluno": [{"resposta": "A"},{"resposta": "C"}]}' http://localhost:8080/provaAluno
+
+     - curl --header "Content-Type: application/json" http://localhost:8080/alunos/1
+
+     - curl --header "Content-Type: application/json" http://localhost:8080/alunos/aprovados
 
 incluindo a descrição de como compilar e executar o programa, além das instruções de utilização.
 
 ### Como compilar e executar o programa
 
 - Importe o projeto a partir do repositório do Git;
-- Impote o projeto utilizando Maven;
+- Acesse a raiz do projeto (onde está localizado o arquivo pom.xml);
+- Execute o comando "mvn spring-boot:run".
    
 
 ### Tecnologias utilizadas
 - Java 11;
 - Spring Boot;
 - Maven;
-- MySql 5.7;
+- H2 DataBase;
+- MySql 5.7 (O projeto foi desenvolvido com MySql, mas para fins de execução, está configurado com o H2);
 - Junit 5;
 - Mockito;
 - Postman (comunicação com servidor).
