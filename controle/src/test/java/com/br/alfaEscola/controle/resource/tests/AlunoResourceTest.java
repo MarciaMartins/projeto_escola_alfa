@@ -4,16 +4,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -34,6 +38,12 @@ public class AlunoResourceTest {
 	
 	@Mock
 	private AlunoService alunoService;
+	
+	@Mock
+	private HttpServletResponse httpServletResponse;
+	
+	@Mock
+	private ApplicationEventPublisher publisher;
 	
 	@InjectMocks
 	private AlunoResource alunoResource;
@@ -70,6 +80,30 @@ public class AlunoResourceTest {
 		assertThat(resposta.getBody().getNome()).isEqualTo("Aluno");
 	}
 
+	@Test
+	public void testCriar(){
+		Aluno novoAluno = new Aluno(1L, "Aluno");
+		when(alunoService.salvar(any())).thenReturn(novoAluno);
+		
+		ResponseEntity<Aluno> resposta = alunoResource.criar(novoAluno, httpServletResponse);
+		verify(alunoService).salvar(any());
+		verify(publisher).publishEvent(any());
+		
+		assertThat(resposta.getStatusCode()).isEqualByComparingTo(HttpStatus.CREATED);
+		assertThat(resposta.getBody().getNome()).isEqualToIgnoringCase("aluno");
+	}
+	
+	@Test
+	public void testAtualizar() {
+		Aluno novoAluno = new Aluno(1L, "Aluno");
+		when(alunoRepository.findById(anyLong())).thenReturn(Optional.of(novoAluno));
+		when(alunoRepository.save(any())).thenReturn(novoAluno);
+		
+		Aluno alunoSalvo = alunoResource.atualizar(1L, new Aluno(1L, "Aluno atualizado"));
+		
+		assertThat(alunoSalvo.getNome()).contains("atualizado");
+	}
+	
 	private List<Aluno> retornaMockListaAlunos() {
 		List<Aluno> alunos = new ArrayList<Aluno>();
 		

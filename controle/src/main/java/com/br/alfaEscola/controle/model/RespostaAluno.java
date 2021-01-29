@@ -29,7 +29,13 @@ public class RespostaAluno {
 	@ManyToOne
 	@JoinColumn(name = "provaAluno_id")
 	private ProvaAluno provaAluno;
-		
+	
+	public RespostaAluno() {
+	}
+	
+	public RespostaAluno(@NotNull ValorResposta resposta) {
+		this.resposta = resposta;
+	}
 
 	public Long getId() {
 		return id;

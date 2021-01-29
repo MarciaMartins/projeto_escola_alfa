@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="AlunoResourceTest2" project="controle" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="com.br.alfaEscola.controle.resource.tests.GabaritoResourceTest" time="0.82" displayname="GabaritoResourceTest" uniqueid="[engine:junit-jupiter]/[class:com.br.alfaEscola.controle.resource.tests.GabaritoResourceTest]">
+    <testcase name="testListar" classname="com.br.alfaEscola.controle.resource.tests.GabaritoResourceTest" time="0.82" displayname="testListar()" uniqueid="[engine:junit-jupiter]/[class:com.br.alfaEscola.controle.resource.tests.GabaritoResourceTest]/[method:testListar()]"/>
+  </testsuite>
+</testrun>

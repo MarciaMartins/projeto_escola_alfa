@@ -1,0 +1,118 @@
+package com.br.alfaEscola.controle.resource.tests;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import com.br.alfaEscola.controle.model.Aluno;
+import com.br.alfaEscola.controle.model.Gabarito;
+import com.br.alfaEscola.controle.model.Prova;
+import com.br.alfaEscola.controle.model.ProvaAluno;
+import com.br.alfaEscola.controle.model.Resposta;
+import com.br.alfaEscola.controle.model.RespostaAluno;
+import com.br.alfaEscola.controle.model.ValorResposta;
+import com.br.alfaEscola.controle.repository.GabaritoRepository;
+import com.br.alfaEscola.controle.repository.ProvaAlunoRespository;
+import com.br.alfaEscola.controle.resource.GabaritoResource;
+import com.br.alfaEscola.controle.resource.ProvaAlunoResource;
+import com.br.alfaEscola.controle.service.GabaritoRespostaService;
+import com.br.alfaEscola.controle.service.ProvaAlunoService;
+
+@ExtendWith(MockitoExtension.class)
+public class ProvaAlunoResourceTest {
+
+	@Mock
+	private ApplicationEventPublisher publisher;
+
+	@Mock
+	private ProvaAlunoService provaAlunoService;
+	
+	@Mock
+	private ProvaAlunoRespository provaAlunoRepository;
+	
+	@Mock
+	private HttpServletResponse response;
+	
+	@InjectMocks
+	private ProvaAlunoResource provaAlunoResource;
+	
+	@Test
+	public void testListar() {
+		List<ProvaAluno> provas = new ArrayList<>();
+		provas.add(retornaMockProvaAluno());
+		
+		when(provaAlunoRepository.findAll()).thenReturn(provas);
+		
+		List<ProvaAluno> resposta = provaAlunoResource.listar();
+		verify(provaAlunoRepository).findAll();
+		
+		assertThat(resposta.size()).isEqualTo(1);
+		assertThat(resposta.get(0).getRespostasAluno().size()).isEqualTo(3);
+	}
+
+	private ProvaAluno retornaMockProvaAluno() {
+		Aluno aluno = new Aluno(1L, "Aluno teste");
+		Prova prova = new Prova(1L, "Prova");
+		
+		RespostaAluno respostaAluno1 = new RespostaAluno(ValorResposta.A);
+		RespostaAluno respostaAluno2 = new RespostaAluno(ValorResposta.B);
+		RespostaAluno respostaAluno3 = new RespostaAluno(ValorResposta.C);
+		
+		List<RespostaAluno> respostas = new ArrayList<>();
+		respostas.add(respostaAluno1);
+		respostas.add(respostaAluno2);
+		respostas.add(respostaAluno3);
+		
+		return new ProvaAluno(aluno, prova, respostas);
+	}
+	
+	@Test
+	public void testCriar() {
+		Gabarito gabarito = retornaMockGabarito();
+		when(gabaritoRespostaService.salvar(any())).thenReturn(gabarito);
+		
+		ResponseEntity<Gabarito> resposta = gabaritoResource.criar(gabarito, response);
+		verify(gabaritoRespostaService).salvar(any());
+		verify(publisher).publishEvent(any());
+		
+		assertThat(resposta.getStatusCode()).isEqualByComparingTo(HttpStatus.CREATED);
+		assertThat(resposta.getBody().getRespostas().size()).isEqualTo(3);
+	}
+	
+	@Test
+	public void testBuscarCodigo() {
+		when(gabaritoRepository.findById(any())).thenReturn(Optional.of(retornaMockGabarito()));
+		
+		ResponseEntity<Gabarito> resposta = gabaritoResource.buscarPeloCodigo(1L);
+		verify(gabaritoRepository).findById(any());
+		
+		assertThat(resposta.getBody().getRespostas().size()).isEqualTo(3);
+	}
+	
+	@Test
+	public void testBuscarCodigoNaoRetornaGabarito() {
+		when(gabaritoRepository.findById(any())).thenReturn(Optional.empty());
+		
+		ResponseEntity<Gabarito> resposta = gabaritoResource.buscarPeloCodigo(1L);
+		verify(gabaritoRepository).findById(any());
+		
+		assertThat(resposta.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+	}
+	
+}

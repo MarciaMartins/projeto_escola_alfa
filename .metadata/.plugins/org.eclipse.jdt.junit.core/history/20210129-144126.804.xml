@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="AlunoResourceTest" project="controle" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="com.br.alfaEscola.controle.resource.tests.AlunoResourceTest" time="1.125" displayname="AlunoResourceTest" uniqueid="[engine:junit-jupiter]/[class:com.br.alfaEscola.controle.resource.tests.AlunoResourceTest]">
+    <testcase name="testCriar" classname="com.br.alfaEscola.controle.resource.tests.AlunoResourceTest" time="1.075" displayname="testCriar()" uniqueid="[engine:junit-jupiter]/[class:com.br.alfaEscola.controle.resource.tests.AlunoResourceTest]/[method:testCriar()]"/>
+    <testcase name="testBuscarPeloCodigo" classname="com.br.alfaEscola.controle.resource.tests.AlunoResourceTest" time="0.008" displayname="testBuscarPeloCodigo()" uniqueid="[engine:junit-jupiter]/[class:com.br.alfaEscola.controle.resource.tests.AlunoResourceTest]/[method:testBuscarPeloCodigo()]"/>
+    <testcase name="testAlunosAprovados" classname="com.br.alfaEscola.controle.resource.tests.AlunoResourceTest" time="0.01" displayname="testAlunosAprovados()" uniqueid="[engine:junit-jupiter]/[class:com.br.alfaEscola.controle.resource.tests.AlunoResourceTest]/[method:testAlunosAprovados()]"/>
+    <testcase name="testListar" classname="com.br.alfaEscola.controle.resource.tests.AlunoResourceTest" time="0.032" displayname="testListar()" uniqueid="[engine:junit-jupiter]/[class:com.br.alfaEscola.controle.resource.tests.AlunoResourceTest]/[method:testListar()]"/>
+  </testsuite>
+</testrun>

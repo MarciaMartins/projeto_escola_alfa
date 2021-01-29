@@ -34,6 +34,13 @@ public class Resposta{
 	@NotNull
 	private int pesoQuestao;
 	
+	public Resposta() {
+	}
+	
+	public Resposta(ValorResposta resposta) {
+		this.resposta = resposta;
+	}
+
 	public void setPesoQuestao(int pesoQuestao) {
 		this.pesoQuestao = pesoQuestao;
 	}

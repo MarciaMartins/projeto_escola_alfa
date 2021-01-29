@@ -34,101 +34,99 @@ import com.br.alfaEscola.controle.service.exception.ProvaInexistente;
 import com.br.alfaEscola.controle.service.exception.QuantidadeDeRespostasInadequada;
 import com.br.alfaEscola.controle.service.exception.RespostaNulaInvalida;
 
-	@RestController
-	@RequestMapping("/provaAluno")
-	public class ProvaAlunoResource {
+@RestController
+@RequestMapping("/provaAluno")
+public class ProvaAlunoResource {
 
-		@Autowired
-		private ProvaAlunoRespository provaAlunoRepository;
-		
-		@Autowired
-		private ApplicationEventPublisher publisher;
-		
-		@Autowired
-		private ProvaAlunoService provaAlunoService;
-		
-		@Autowired
-		private MessageSource messageSource;
-		
-		@GetMapping
-		public List<ProvaAluno> listar(){
-			return provaAlunoRepository.findAll();
-		}
-		
-		@PostMapping
-		public ResponseEntity<ProvaAluno> criar(@Valid @RequestBody ProvaAluno provaAluno, HttpServletResponse response) {
-			System.out.println(">>"+provaAluno.getProva());
-			ProvaAluno provaAlunoSalvo = provaAlunoService.salvar(provaAluno);
-			publisher.publishEvent(new RecursoCriadoEvent(this, response, provaAlunoSalvo.getId()));			
-			return 	ResponseEntity.status(HttpStatus.CREATED).body(provaAlunoSalvo);
-		}
-		
-		@GetMapping("/{id}")
-		public ResponseEntity<ProvaAluno> buscarPeloCodigo(@PathVariable Long id) {
-		    Optional<ProvaAluno> provaAluno = this.provaAlunoRepository.findById(id);
-		    return provaAluno.isPresent() ? 
-		            ResponseEntity.ok(provaAluno.get()) : ResponseEntity.notFound().build();
-		}
-		
-		
+	@Autowired
+	private ProvaAlunoRespository provaAlunoRepository;
 	
-		@ExceptionHandler({ListaRespostaVaziaInvalida.class})
-		public ResponseEntity<Object> handleListaRespostaVaziaInvalida(ListaRespostaVaziaInvalida ex){
-			String mensagemUsuario = messageSource.getMessage("provaAluno.lista-resposta_vaiza", null, LocaleContextHolder.getLocale());
-			String mensagemDesenvolvedor = ex.toString();
-			List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
-			return ResponseEntity.badRequest().body(erros);
-		}
-		
-		@ExceptionHandler({CadastroProvaAlunoExistente.class})
-		public ResponseEntity<Object> handleCadastroProvaAlunoExistente(CadastroProvaAlunoExistente ex){
-			String mensagemUsuario = messageSource.getMessage("provaAluno.prova-aluno-existente", null, LocaleContextHolder.getLocale());
-			String mensagemDesenvolvedor = ex.toString();
-			List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
-			return ResponseEntity.badRequest().body(erros);
-		}
-				
+	@Autowired
+	private ApplicationEventPublisher publisher;
+	
+	@Autowired
+	private ProvaAlunoService provaAlunoService;
+	
+	@Autowired
+	private MessageSource messageSource;
+	
+	@GetMapping
+	public List<ProvaAluno> listar(){
+		return provaAlunoRepository.findAll();
+	}
+	
+	@PostMapping
+	public ResponseEntity<ProvaAluno> criar(@Valid @RequestBody ProvaAluno provaAluno, HttpServletResponse response) {
+		System.out.println(">>"+provaAluno.getProva());
+		ProvaAluno provaAlunoSalvo = provaAlunoService.salvar(provaAluno);
+		publisher.publishEvent(new RecursoCriadoEvent(this, response, provaAlunoSalvo.getId()));			
+		return 	ResponseEntity.status(HttpStatus.CREATED).body(provaAlunoSalvo);
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<ProvaAluno> buscarPeloCodigo(@PathVariable Long id) {
+	    Optional<ProvaAluno> provaAluno = this.provaAlunoRepository.findById(id);
+	    return provaAluno.isPresent() ? 
+	            ResponseEntity.ok(provaAluno.get()) : ResponseEntity.notFound().build();
+	}
+	
+	@ExceptionHandler({ListaRespostaVaziaInvalida.class})
+	public ResponseEntity<Object> handleListaRespostaVaziaInvalida(ListaRespostaVaziaInvalida ex){
+		String mensagemUsuario = messageSource.getMessage("provaAluno.lista-resposta_vaiza", null, LocaleContextHolder.getLocale());
+		String mensagemDesenvolvedor = ex.toString();
+		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+		return ResponseEntity.badRequest().body(erros);
+	}
+	
+	@ExceptionHandler({CadastroProvaAlunoExistente.class})
+	public ResponseEntity<Object> handleCadastroProvaAlunoExistente(CadastroProvaAlunoExistente ex){
+		String mensagemUsuario = messageSource.getMessage("provaAluno.prova-aluno-existente", null, LocaleContextHolder.getLocale());
+		String mensagemDesenvolvedor = ex.toString();
+		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+		return ResponseEntity.badRequest().body(erros);
+	}
 			
-		@ExceptionHandler({QuantidadeDeRespostasInadequada.class})
-		public ResponseEntity<Object> handleQuantidadeDeRespostasInadequada(QuantidadeDeRespostasInadequada ex){
-			String mensagemUsuario = messageSource.getMessage("provaAluno.resposta-questao-incompativel", null, LocaleContextHolder.getLocale());
-			String mensagemDesenvolvedor = ex.toString();
-			List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
-			return ResponseEntity.badRequest().body(erros);
-		}
 		
-		@ExceptionHandler({ProvaInexistente.class})
-		public ResponseEntity<Object> handleProvaInexistente(ProvaInexistente ex){
-			String mensagemUsuario = messageSource.getMessage("provaAluno.prova-nao-cadastrada", null, LocaleContextHolder.getLocale());
-			String mensagemDesenvolvedor = ex.toString();
-			List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
-			return ResponseEntity.badRequest().body(erros);
-		}
-		
-		@ExceptionHandler({AlunoInexistente.class})
-		public ResponseEntity<Object> handleAlunoInexistente(AlunoInexistente ex){
-			String mensagemUsuario = messageSource.getMessage("provaAluno.aluno-nao-cadastrada", null, LocaleContextHolder.getLocale());
-			String mensagemDesenvolvedor = ex.toString();
-			List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
-			return ResponseEntity.badRequest().body(erros);
-		}
-		
-		
-		@ExceptionHandler({RespostaNulaInvalida.class})
-		public ResponseEntity<Object> handleRespostaNulaInvalida(RespostaNulaInvalida ex){
-			String mensagemUsuario = messageSource.getMessage("provaAluno.resposta-nulo", null, LocaleContextHolder.getLocale());
-			String mensagemDesenvolvedor = ex.toString();
-			List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
-			return ResponseEntity.badRequest().body(erros);
-		}
-		
-		@ExceptionHandler({ParametroNuloInvalido.class})
-		public ResponseEntity<Object> handleParametroNuloInvalido(ParametroNuloInvalido ex){
-			String mensagemUsuario = messageSource.getMessage("provaAluno.parametro-nulo", null, LocaleContextHolder.getLocale());
-			String mensagemDesenvolvedor = ex.toString();
-			List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
-			return ResponseEntity.badRequest().body(erros);
-		}
+	@ExceptionHandler({QuantidadeDeRespostasInadequada.class})
+	public ResponseEntity<Object> handleQuantidadeDeRespostasInadequada(QuantidadeDeRespostasInadequada ex){
+		String mensagemUsuario = messageSource.getMessage("provaAluno.resposta-questao-incompativel", null, LocaleContextHolder.getLocale());
+		String mensagemDesenvolvedor = ex.toString();
+		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+		return ResponseEntity.badRequest().body(erros);
+	}
+	
+	@ExceptionHandler({ProvaInexistente.class})
+	public ResponseEntity<Object> handleProvaInexistente(ProvaInexistente ex){
+		String mensagemUsuario = messageSource.getMessage("provaAluno.prova-nao-cadastrada", null, LocaleContextHolder.getLocale());
+		String mensagemDesenvolvedor = ex.toString();
+		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+		return ResponseEntity.badRequest().body(erros);
+	}
+	
+	@ExceptionHandler({AlunoInexistente.class})
+	public ResponseEntity<Object> handleAlunoInexistente(AlunoInexistente ex){
+		String mensagemUsuario = messageSource.getMessage("provaAluno.aluno-nao-cadastrada", null, LocaleContextHolder.getLocale());
+		String mensagemDesenvolvedor = ex.toString();
+		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+		return ResponseEntity.badRequest().body(erros);
+	}
+	
+	
+	@ExceptionHandler({RespostaNulaInvalida.class})
+	public ResponseEntity<Object> handleRespostaNulaInvalida(RespostaNulaInvalida ex){
+		String mensagemUsuario = messageSource.getMessage("provaAluno.resposta-nulo", null, LocaleContextHolder.getLocale());
+		String mensagemDesenvolvedor = ex.toString();
+		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+		return ResponseEntity.badRequest().body(erros);
+	}
+	
+	@ExceptionHandler({ParametroNuloInvalido.class})
+	public ResponseEntity<Object> handleParametroNuloInvalido(ParametroNuloInvalido ex){
+		String mensagemUsuario = messageSource.getMessage("provaAluno.parametro-nulo", null, LocaleContextHolder.getLocale());
+		String mensagemDesenvolvedor = ex.toString();
+		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+		return ResponseEntity.badRequest().body(erros);
+	}
 		
 		
 

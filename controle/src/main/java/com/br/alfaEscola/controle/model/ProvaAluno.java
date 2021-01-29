@@ -33,6 +33,15 @@ public class ProvaAluno {
 	//@JsonIgnore
 	private int notaProva;
 	
+	public ProvaAluno() {
+	}
+	
+	public ProvaAluno(Aluno aluno, Prova prova, List<RespostaAluno> respostasAluno) {
+		this.aluno = aluno;
+		this.prova = prova;
+		this.respostasAluno = respostasAluno;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -57,7 +66,6 @@ public class ProvaAluno {
 	public void setRespostasAluno(List<RespostaAluno> respostasAluno) {
 		this.respostasAluno = respostasAluno;
 	}
-	
 	
 	public void setNotaProva(int notaProva) {
 		this.notaProva = notaProva;

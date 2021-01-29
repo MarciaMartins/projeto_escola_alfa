@@ -17,49 +17,45 @@ public class Prova {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@NotNull
 	private String descricao;
-	
+
 	@JsonIgnore
 	private Long gabaritoId;
-	
-	
+
 	@JsonIgnore
 	@OneToOne(mappedBy = "prova")
 	private Gabarito gabarito;
+
+	public Prova() {
+	}
 	
+	public Prova(Long id, @NotNull String descricao) {
+		super();
+		this.id = id;
+		this.descricao = descricao;
+	}
+
 	public Gabarito getGabarito() {
 		return gabarito;
 	}
-	
+
 	public void setGabarito(Gabarito gabarito) {
 		this.gabarito = gabarito;
 	}
-		
-	
+
 	public Prova(Gabarito gabarito) {
-		this.descricao=("Prova ");
+		this.descricao = ("Prova ");
 	}
-	
-	
-
-	public Prova() {
-		
-	}
-
-
-	
 
 	public void setGabaritoId(Long gabaritoId) {
 		this.gabaritoId = gabaritoId;
 	}
-	
+
 	public Long getGabaritoId() {
 		return gabaritoId;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -101,8 +97,4 @@ public class Prova {
 			return false;
 		return true;
 	}
-
-	
-	
-	
 }
