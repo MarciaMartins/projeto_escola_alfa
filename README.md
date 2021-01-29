@@ -16,17 +16,17 @@ Existem três serviços principais do projeto:
   - Não é permitido cadastrar um gabarito sem informar o peso para a questão ou informar valor para o peso diferente de um inteiro ou menor de zero;
 
 2. Aluno
-   - Permite o cadastro de um aluno;
-   - Permite a consulta do aluno, retornando sua nota final (até o momento da consulta);
-   - Para realizar o cadastro de aluno e necessário informar seu nome;
-   - São permitidos somente o cadastro de 100 alunos no sistema.
+  - Permite o cadastro de um aluno;
+  - Permite a consulta do aluno, retornando sua nota final (até o momento da consulta);
+  - Para realizar o cadastro de aluno e necessário informar seu nome;
+  - São permitidos somente o cadastro de 100 alunos no sistema.
 
 2.1. Consulta alunos aprovados
-   - Através da consulta alunos/aprovados, será possível listar os alunos aprovados, com média maior que sete;
+  - Através da consulta alunos/aprovados, será possível listar os alunos aprovados, com média maior que sete;
 
 3. Resposta do aluno para as provas previamente cadastradas
-   - Permite cadastrar as respostas para um gabarito e aluno previamente registrados;
-   - Somente será possível cadastrar um conjunto de respostas para cada prova, obedecendo a quantidade de gabaritos registrados.
+  - Permite cadastrar as respostas para um gabarito e aluno previamente registrados;
+  - Somente será possível cadastrar um conjunto de respostas para cada prova, obedecendo a quantidade de gabaritos registrados.
 
 ### Recursos importantes para a execução do projeto
 
@@ -43,14 +43,14 @@ Existem três serviços principais do projeto:
   ## Cadastrar o gabarito de cada prova 
      - Enviar um Post através do recurso http://localhost:8080/gabaritos
      - Regra campo envio: 
-          1. dome - enviar descrição de identificação;
-	  2. respostas: lista composta de resposta e peso da questão.
+          1. nome - enviar descrição de identificação;
+          2. respostas: lista composta de resposta e peso da questão.
        
      Exemplo de criação de um gabarito:
      {
         "descricao": "Descricao de identificação do gabarito",
         "respostas": [
-        	{
+            {
                 "resposta": "A",
                 "pesoQuestao": 2
             },
@@ -59,56 +59,66 @@ Existem três serviços principais do projeto:
                 "pesoQuestao": 5
             }
         ]
-    }
+     }
   
   ## Cadastrar as respostas de cada aluno para cada prova 
      - Enviar um Post através do recurso http://localhost:8080/provaAluno
      - Regra campo envio: 
           1. aluno: id do aluno;
-	  2. prova: id da prova;
-	  3. prova: lista composta de resposta para prova;
+          2. prova: id da prova;
+          3. prova: lista composta de resposta para prova;
 	  
-	  Exemplo de criação de um gabarito:
-	  {
-   		"aluno": {
-        		"id": 7
-    		},
-    		"prova": {
-       			"id": 1
-    		},
-    		"respostasAluno": [
-        		{
-			  "resposta": "C"
-            		},
-            		{
-                	     "resposta": "C"
-            		}
-    		]
- 	}
+     Exemplo de criação de um gabarito:
+     {
+     	"aluno": {
+     		"id": 1
+     	},
+     	"prova": {
+     		"id": 1
+     	},
+     	"respostasAluno": [
+     	{
+     		"resposta": "A"
+     	},
+     	{
+     		"resposta": "C"
+     	}]
+     }
   
   ## Verificar a nota final de cada aluno   
      - Enviar um Get através do recurso http://localhost:8080/alunos/{id} 
      - Regra campo envio: 
           1. {id}: id do aluno;
   
-  ##Listar os alunos aprovados 
-   Enviar um Get através do recurso http://localhost:8080/alunos/aprovados 
-     - Regra campo: 
-          1. {id}: id do aluno;
+  ## Listar os alunos aprovados 
+     - Enviar um Get através do recurso http://localhost:8080/alunos/aprovados 
+     
+  ## Curls de exemplo
+     - curl --header "Content-Type: application/json" --request POST --data '{"nome": "Nome de identificacao do aluno"}' http://localhost:8080/alunos
+
+     - curl --header "Content-Type: application/json" --request POST --data '{"descricao": "Descricao de identificacao do gabarito","respostas": [{"resposta": "A","pesoQuestao": 2},{"resposta": "C","pesoQuestao": 5}]}' http://localhost:8080/gabaritos
+
+     - curl --header "Content-Type: application/json" --request POST --data '{"aluno": {"id": 1},"prova": {"id": 1},"respostasAluno": [{"resposta": "A"},{"resposta": "C"}]}' http://localhost:8080/provaAluno
+
+     - curl --header "Content-Type: application/json" http://localhost:8080/alunos/1
+
+     - curl --header "Content-Type: application/json" http://localhost:8080/alunos/aprovados
 
 incluindo a descrição de como compilar e executar o programa, além das instruções de utilização.
 
 ### Como compilar e executar o programa
 
 - Importe o projeto a partir do repositório do Git;
-- Impote o projeto utilizando Maven;
+- Acesse o diretório "controle" (onde está localizado o pom.xml) a partir da raiz do projeto;
+- Execute o comando "mvn spring-boot:run" a partir da linha de comando.
    
 
 ### Tecnologias utilizadas
 - Java 11;
 - Spring Boot;
 - Maven;
-- MySql 5.7;
+- H2 DataBase;
+- MySql 5.7 (O projeto foi desenvolvido com MySql, mas para fins de execução, está configurado com o H2);
 - Junit 5;
 - Mockito;
 - Postman (comunicação com servidor).
