@@ -16,13 +16,13 @@ Existem três serviços principais do projeto:
   - Não é permitido cadastrar um gabarito sem informar o peso para a questão ou informar valor para o peso diferente de um inteiro ou menor de zero;
 
 2. Aluno
-   - Permite o cadastro de um aluno;
-   - Permite a consulta do aluno, retornando sua nota final (até o momento da consulta);
-   - Para realizar o cadastro de aluno e necessário informar seu nome;
-   - São permitidos somente o cadastro de 100 alunos no sistema.
+  - Permite o cadastro de um aluno;
+  - Permite a consulta do aluno, retornando sua nota final (até o momento da consulta);
+  - Para realizar o cadastro de aluno e necessário informar seu nome;
+  - São permitidos somente o cadastro de 100 alunos no sistema.
 
 2.1. Consulta alunos aprovados
-   - Através da consulta alunos/aprovados, será possível listar os alunos aprovados, com média maior que sete;
+  - Através da consulta alunos/aprovados, será possível listar os alunos aprovados, com média maior que sete;
 
 3. Resposta do aluno para as provas previamente cadastradas
    - Permite cadastrar as respostas para um gabarito e aluno previamente registrados;
