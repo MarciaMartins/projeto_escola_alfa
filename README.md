@@ -50,7 +50,7 @@ Existem três serviços principais do projeto:
      {
         "descricao": "Descricao de identificação do gabarito",
         "respostas": [
-        	{
+            {
                 "resposta": "A",
                 "pesoQuestao": 2
             },
@@ -59,7 +59,7 @@ Existem três serviços principais do projeto:
                 "pesoQuestao": 5
             }
         ]
-    }
+     }
   
   ## Cadastrar as respostas de cada aluno para cada prova 
      - Enviar um Post através do recurso http://localhost:8080/provaAluno
@@ -68,23 +68,22 @@ Existem três serviços principais do projeto:
           2. prova: id da prova;
           3. prova: lista composta de resposta para prova;
 	  
-	  Exemplo de criação de um gabarito:
-	  {
-   		"aluno": {
-        		"id": 1
-    		},
-    		"prova": {
-       			"id": 1
-    		},
-    		"respostasAluno": [
-        		{
-			  "resposta": "C"
-            		},
-            		{
-                	     "resposta": "C"
-            		}
-    		]
- 	}
+     Exemplo de criação de um gabarito:
+     {
+     	"aluno": {
+     		"id": 1
+     	},
+     	"prova": {
+     		"id": 1
+     	},
+     	"respostasAluno": [
+     	{
+     		"resposta": "C"
+     	},
+     	{
+     		"resposta": "C"
+     	}]
+     }
   
   ## Verificar a nota final de cada aluno   
      - Enviar um Get através do recurso http://localhost:8080/alunos/{id} 
