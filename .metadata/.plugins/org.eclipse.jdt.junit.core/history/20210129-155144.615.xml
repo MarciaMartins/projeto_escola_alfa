@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="AlunoResourceTest2" project="controle" tests="3" started="3" failures="0" errors="0" ignored="0">
-  <testsuite name="com.br.alfaEscola.controle.resource.tests.GabaritoResourceTest" time="0.938" displayname="GabaritoResourceTest" uniqueid="[engine:junit-jupiter]/[class:com.br.alfaEscola.controle.resource.tests.GabaritoResourceTest]">
-    <testcase name="testBuscarCodigo" classname="com.br.alfaEscola.controle.resource.tests.GabaritoResourceTest" time="0.914" displayname="testBuscarCodigo()" uniqueid="[engine:junit-jupiter]/[class:com.br.alfaEscola.controle.resource.tests.GabaritoResourceTest]/[method:testBuscarCodigo()]"/>
-    <testcase name="testCriar" classname="com.br.alfaEscola.controle.resource.tests.GabaritoResourceTest" time="0.009" displayname="testCriar()" uniqueid="[engine:junit-jupiter]/[class:com.br.alfaEscola.controle.resource.tests.GabaritoResourceTest]/[method:testCriar()]"/>
-    <testcase name="testListar" classname="com.br.alfaEscola.controle.resource.tests.GabaritoResourceTest" time="0.014" displayname="testListar()" uniqueid="[engine:junit-jupiter]/[class:com.br.alfaEscola.controle.resource.tests.GabaritoResourceTest]/[method:testListar()]"/>
-  </testsuite>
-</testrun>
