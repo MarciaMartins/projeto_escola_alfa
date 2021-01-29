@@ -527,3 +527,54 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-01-29 12:38:03.014
 !MESSAGE executing callback sts4.classpath.tYXZEOqw SUCCESS [done]
+
+!ENTRY org.eclipse.jface 2 0 2021-01-29 12:47:21.064
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-01-29 12:47:21.064
+!MESSAGE A conflict occurred for CTRL+SHIFT+C:
+Binding(CTRL+SHIFT+C,
+	ParameterizedCommand(Command(org.eclipse.tm4e.languageconfiguration.togglelinecommentcommand,Toggle Line Comment,
+		,
+		Category(org.eclipse.tm4e.languageconfiguration.category,TM4E Language Configuration,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2ce4a594,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+SHIFT+C,
+	ParameterizedCommand(Command(org.springframework.tooling.boot.ls.ToggleComment,Toggle Comment,
+		,
+		Category(org.springframework.ide.eclipse.commands,Spring Generic Text Editor,Spring Language Server Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@fe4e851,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-01-29 13:16:28.465
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-01-29 13:16:28.525
+!MESSAGE classpath=99 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-01-29 13:16:28.543
+!MESSAGE buffering callback sts4.classpath.tYXZEOqw controle false 98
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-01-29 13:16:28.554
+!MESSAGE executing callback sts4.classpath.tYXZEOqw 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-01-29 13:16:28.846
+!MESSAGE executing callback sts4.classpath.tYXZEOqw SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-01-29 13:17:12.843
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-01-29 13:17:12.865
+!MESSAGE classpath=98 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-01-29 13:17:12.885
+!MESSAGE buffering callback sts4.classpath.tYXZEOqw controle false 97
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-01-29 13:17:12.896
+!MESSAGE executing callback sts4.classpath.tYXZEOqw 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-01-29 13:17:12.921
+!MESSAGE executing callback sts4.classpath.tYXZEOqw SUCCESS [done]
