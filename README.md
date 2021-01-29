@@ -28,22 +28,80 @@ Existem três serviços principais do projeto:
    - Permite cadastrar as respostas para um gabarito e aluno previamente registrados;
    - Somente será possível cadastrar um conjunto de respostas para cada prova, obedecendo a quantidade de gabaritos registrados.
 
-### Pré-requisitos para o bom funcionamento
+### Recursos importantes para a execução do projeto
 
-	- Cadastrar o aluno - http://localhost:8080/alunos
-	- Cadastrar o gabarito de cada prova - http://localhost:8080/gabaritos
-	- Cadastrar as respostas de cada aluno para cada prova - http://localhost:8080/provaAluno
-	- Verificar a nota final de cada aluno http://localhost:8080/alunos/{id}
-	- Listar os alunos aprovados - http://localhost:8080/alunos/aprovados
+  ## Cadastrar o aluno 
+     - Enviar um Post através do recurso http://localhost:8080/alunos.
+     - Regra campo envio: 
+          1. nome - enviar nome de identificação.  
+     
+     Exemplo de criação aluno: 
+      {
+  	  "nome": "Nome de identificação do aluno"
+      }
+      
+  ## Cadastrar o gabarito de cada prova 
+     - Enviar um Post através do recurso http://localhost:8080/gabaritos
+     - Regra campo envio: 
+          1. dome - enviar descrição de identificação;
+	  2. respostas: lista composta de resposta e peso da questão.
+       
+     Exemplo de criação de um gabarito:
+     {
+        "descricao": "Descricao de identificação do gabarito",
+        "respostas": [
+        	{
+                "resposta": "A",
+                "pesoQuestao": 2
+            },
+            {
+                "resposta": "C",
+                "pesoQuestao": 5
+            }
+        ]
+    }
+  
+  ## Cadastrar as respostas de cada aluno para cada prova 
+     - Enviar um Post através do recurso http://localhost:8080/provaAluno
+     - Regra campo envio: 
+          1. aluno: id do aluno;
+	  2. prova: id da prova;
+	  3. prova: lista composta de resposta para prova;
+	  
+	  Exemplo de criação de um gabarito:
+	  {
+   		"aluno": {
+        		"id": 7
+    		},
+    		"prova": {
+       			"id": 1
+    		},
+    		"respostasAluno": [
+        		{
+			  "resposta": "C"
+            		},
+            		{
+                	     "resposta": "C"
+            		}
+    		]
+ 	}
+  
+  ## Verificar a nota final de cada aluno   
+     - Enviar um Get através do recurso http://localhost:8080/alunos/{id} 
+     - Regra campo envio: 
+          1. {id}: id do aluno;
+  
+  ##Listar os alunos aprovados 
+   Enviar um Get através do recurso http://localhost:8080/alunos/aprovados 
+     - Regra campo: 
+          1. {id}: id do aluno;
 
 incluindo a descrição de como compilar e executar o programa, além das instruções de utilização.
 
 ### Como compilar e executar o programa
 
 - Importe o projeto a partir do repositório do Git;
-- 
-  
-   
+- Impote o projeto utilizando Maven;
    
 
 ### Tecnologias utilizadas
