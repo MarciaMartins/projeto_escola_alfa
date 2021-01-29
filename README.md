@@ -71,7 +71,7 @@ Existem três serviços principais do projeto:
 	  Exemplo de criação de um gabarito:
 	  {
    		"aluno": {
-        		"id": 7
+        		"id": 1
     		},
     		"prova": {
        			"id": 1
@@ -91,10 +91,9 @@ Existem três serviços principais do projeto:
      - Regra campo envio: 
           1. {id}: id do aluno;
   
-  ##Listar os alunos aprovados 
-   Enviar um Get através do recurso http://localhost:8080/alunos/aprovados 
-     - Regra campo: 
-          1. {id}: id do aluno;
+  ## Listar os alunos aprovados 
+     - Enviar um Get através do recurso http://localhost:8080/alunos/aprovados 
+     
 
 incluindo a descrição de como compilar e executar o programa, além das instruções de utilização.
 
